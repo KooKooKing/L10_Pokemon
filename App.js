@@ -59,13 +59,14 @@ const styles = StyleSheet.create({
     }
 });
 
-const handler = () => {
-    ToastAndroid.show('A Pokémon appeared nearby!', ToastAndroid.SHORT);
+
+const handler = (pokemonName) => {
+    ToastAndroid.show(`A ${pokemonName} appeared nearby!`, ToastAndroid.SHORT);
 };
 
 const renderItem = ({ item }) => {
     return (
-        <TouchableOpacity style={styles.itemCard} onPress={handler}>
+        <TouchableOpacity style={styles.itemCard} onPress={() => handler(item.key)}>
             <Text style={styles.itemText}>{item.key}</Text>
             <Image source={{ uri: item.pic }} style={styles.itemImage} />
         </TouchableOpacity>
@@ -75,8 +76,6 @@ const renderItem = ({ item }) => {
 const App = () => {
     return (
         <View style={{ flex: 1 }}>
-
-            {/* ADD POKEMON BUTTON */}
             <TouchableOpacity
                 style={{
                     backgroundColor: '#1a75ff',
@@ -84,7 +83,7 @@ const App = () => {
                     margin: 10,
                     borderRadius: 8,
                 }}
-                onPress={() => ToastAndroid.show('Add Pokémon clicked!', ToastAndroid.SHORT)}
+                onPress={() => ToastAndroid.show('Add Pokémon!', ToastAndroid.SHORT)}
             >
                 <Text style={{
                     color: 'white',
